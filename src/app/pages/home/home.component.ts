@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,19 +9,16 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
     ocultarPosts=true;
     usuarios:any;
     detalleUsuario:any;
-    pageEvent: PageEvent;
-    formEditUser: FormGroup;
     editarUsuario=false;
     posts:any;
-    itemsPerPageLabel="quinda";
+    pageEvent: PageEvent;
+    formEditUser: FormGroup;
     
-
   constructor(
-      private router: Router,
-      private authService:AuthService,
       private usersService:UsersService,
     ) { }
    
@@ -31,26 +26,28 @@ export class HomeComponent implements OnInit {
     this.traerUsuarios();
     this.crearFormulario();
   }
+
   crearFormulario(){
     this.formEditUser = new FormGroup ({
         email: new FormControl({value:''}),
         first_name: new FormControl ( '', [Validators.required]),
-        last_name:    new FormControl ( '', [Validators.required] ),
+        last_name:  new FormControl ( '', [Validators.required] ),
         acercaDe: new FormControl ( '', [Validators.required]),
-        job: new FormControl ( {vaue:'Escritor'}),
+        job: new FormControl ( '', [Validators.required]),
         age: new FormControl ( '', [Validators.required]),
     })   
   }
+
   traerUsuarios(page?){
     this.usersService.listUsers(page).subscribe(resp=>{
         this.usuarios=resp;
         if (resp) {
             console.log("Servicio traerUsuarios:",resp);
-            
             this.usuarios= this.usuarios.data; 
         }
         });
   }
+
   obtenerDetalles( id:string){      
       this.usersService.infoUser(id).subscribe(resp=>{
         if (resp) {
@@ -66,6 +63,7 @@ export class HomeComponent implements OnInit {
         }
       });
   }
+
   actualizarUsuario(data?){
     data=this.formEditUser.getRawValue();
     data.avatar=this.detalleUsuario.avatar;
@@ -79,6 +77,7 @@ export class HomeComponent implements OnInit {
             }       
         })
   }
+
   obtenerPosts(idUser){
     this.ocultarPosts=false;
     this.usersService.postsService(idUser).subscribe(resp =>{
@@ -88,9 +87,11 @@ export class HomeComponent implements OnInit {
         }  
     })
   }
+
   ocultarPost(){
     this.ocultarPosts=true;
   }
+
   borrarPost(id){
     this.posts=this.posts.filter(function(car) {
             return car.id !== id; 

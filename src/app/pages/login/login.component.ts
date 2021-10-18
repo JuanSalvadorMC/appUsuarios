@@ -11,10 +11,6 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class LoginComponent implements OnInit {
 
-    termino:string='sffsfs';
-    //Usuario y contraseña validos
-    //"email": "eve.holt@reqres.in",
-    //"password": "pistol"
     dataUser:JSON;
     formLogin: FormGroup;
     mostrarUsuario=false;
@@ -26,37 +22,34 @@ export class LoginComponent implements OnInit {
       private authService:AuthService, 
       ) { }
 
-  ngOnInit(): void {
-    this.crearFormulario();
-  }
-  crearFormulario(){
-    this.formLogin = new FormGroup ({
-      email:    new FormControl ( '', [Validators.required, Validators.email] ),
-      password: new FormControl ( '', [Validators.required, Validators.minLength(6)]),
-    })
-  }
-
+    ngOnInit(): void {
+        this.crearFormulario();
+    }
+    crearFormulario(){
+        this.formLogin = new FormGroup ({
+        email:    new FormControl ( '', [Validators.required, Validators.email] ),
+        password: new FormControl ( '', [Validators.required, Validators.minLength(6)]),
+        })
+    }
     logout(){
         this.authService.logout();
         this.router.navigate(['./page/home']);
     }
- login() {
-        this.dataUser=(this.formLogin.getRawValue());
-
-        this.authService.login (this.dataUser).subscribe(resp  =>{
-            console.log(resp);
-            if (resp==false) {
+    login() {
+            this.dataUser=(this.formLogin.getRawValue());
+            this.authService.login (this.dataUser).subscribe(resp  =>{
+                console.log(resp);
+                if (resp==false) {
+                    this.errorRequest=true;
+                }
+                if (resp!=null) {
+                    this.router.navigate(['./page/home']);
+                }
+                
+            },err => {
+                console.log('error');
                 this.errorRequest=true;
-            }
-            if (resp!=null) {
-                this.router.navigate(['./page/home']);
-            }
-            
-        },err => {
-            console.log('error');
-            this.errorRequest=true;
-          });
-          
-    }
+            });
+        }
 
 }
