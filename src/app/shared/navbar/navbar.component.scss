@@ -5,9 +5,18 @@ $gris:#a1a1a1;
 $azulClaro:#9ac4e2;
 $azul:#4695ce;
 .navbar{
+    padding: 0 2rem;
     background-color: $azulClaro;
 }
 .alinear{
     display: flex;
     justify-content: space-between;
+}
+.logout{
+    background-color: aliceblue;
+    font-size: 14px !important;
+}
+.logout>*{
+    background-color: aliceblue;
+    font-size: 14px !important;
 }

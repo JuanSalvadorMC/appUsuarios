@@ -20,14 +20,12 @@ export class AuthGuard implements  CanLoad, CanActivate {
         return this.authService.autentificacion().pipe(
             tap( authOn => {
                 if (!authOn) {
+                    console.log("Bloqueado por Guard");
                     this.router.navigate(['./auth/login']);
                 }
             })
         )
-        /* if (this.authService.auth) {
-            return true
-        }
-    return false; */
+        
   }
   canLoad(
     route: Route,
@@ -35,15 +33,11 @@ export class AuthGuard implements  CanLoad, CanActivate {
         return this.authService.autentificacion().pipe(
             tap( authActive => {
                 if (!authActive) {
+                    console.log("Bloqueado por Guard");
                     this.router.navigate(['./auth/login']);
                 }
             })
         )
-       /*  if (this.authService.auth) {
-            return true;
-        }
-        
-    return false; */
   }
   
 }
