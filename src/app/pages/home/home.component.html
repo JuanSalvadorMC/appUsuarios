@@ -1,1 +1,77 @@
-<h1>home works!</h1>
+<!-- <mat-toolbar >
+    <button mat-icon-button (click)="sidenav.toggle()" >
+        <span>Menux</span><mat-icon>menu</mat-icon>
+    </button>
+    
+</mat-toolbar> -->
+
+
+
+<mat-sidenav-container  fullscreen>
+  <mat-sidenav #sidenav mode='push' position="end">
+    <mat-toolbar class="alinear">
+        <span>Menu</span>
+        <button mat-icon-button (click)="sidenav.toggle()" >
+            <mat-icon mat-list-icon>menu</mat-icon> 
+        </button>
+        
+    </mat-toolbar>
+    <mat-nav-list>
+        <a routerLink="./lista-usuarios" mat-list-item>
+            <mat-icon mat-list-icon>label</mat-icon>
+            <span>Lista de usuarios</span>
+        </a>   
+        <a routerLink="./lista-usuarios" mat-list-item>
+            <mat-icon mat-list-icon>add</mat-icon>
+            <span>Lista de usuarios</span>
+        </a>   
+        <a routerLink="./lista-usuarios" mat-list-item>
+            <mat-icon mat-list-icon>label</mat-icon>
+            <span>Lista de usuarios</span>
+        </a>   
+        <a routerLink="./lista-usuarios" mat-list-item>
+            <mat-icon mat-list-icon>label</mat-icon>
+            <span>Lista de usuarios</span>
+        </a>   
+    </mat-nav-list>
+  </mat-sidenav>
+
+    <mat-sidenav-content>
+       
+        <mat-toolbar class="alinear">
+            <div>
+                <span>Menu</span>
+            <button mat-icon-button (click)="sidenav.toggle()" >
+                <mat-icon>menu</mat-icon> 
+            </button>
+            </div>
+             
+            <div>
+                <span>{{getUsuario}}</span>
+             <button mat-button (click)="logout()"><h3>Logout</h3></button>   
+            </div>
+            
+        </mat-toolbar>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, unde nesciunt? Dolorem ab molestias ipsum repudiandae tenetur iusto, mollitia vel totam ducimus tempora natus architecto et non deleniti, maxime harum?</h2>
+        <mat-nav-list>
+            <a routerLink="./lista-usuarios" mat-list-item>
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Lista de usuarios</span>
+            </a>   
+            <a routerLink="./lista-usuarios" mat-list-item>
+                <mat-icon mat-list-icon>add</mat-icon>
+                <span>Lista de usuarios</span>
+            </a>   
+            <a routerLink="./lista-usuarios" mat-list-item>
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Lista de usuarios</span>
+            </a>   
+            <a routerLink="./lista-usuarios" mat-list-item>
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span>Lista de usuarios</span>
+            </a>   
+        </mat-nav-list>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

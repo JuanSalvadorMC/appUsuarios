@@ -1,0 +1,45 @@
+$purpura: #673ab7;
+$purpuraLigth: #b7aec7;
+$PurpuraStrong: #4f2597;
+$gris:#a1a1a1;
+
+.bground{
+    
+    height: 100vh;
+}
+.flexCenterY{
+    display: flex;
+    align-items: center;
+}
+.flexCenterX{
+    display: flex;
+    justify-content: center;
+}
+
+.ventana{
+    background-color: #ffffff;
+    height: 60vh;
+    width: calc(6vw + 250px);
+    flex-direction: column;
+    min-width: 300px;
+    border: 1px solid $purpuraLigth;
+    border-radius: 4px;
+    box-shadow: 0 30px 150px 0px $gris;
+    overflow-y: auto;
+    padding: 5px;
+}
+.ventana>*{
+    margin: 12px;
+    text-align: center;
+}
+.form{
+    flex-direction: column;
+}
+a{
+    text-decoration-color: $purpura;
+    color: $purpura;
+}
+.alert{
+    color: rgb(218, 5, 5);
+
+}

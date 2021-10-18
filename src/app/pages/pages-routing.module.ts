@@ -1,7 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 
 
 
@@ -10,7 +9,7 @@ const rutasPages : Routes =[
         path:'',
         children:[
             {
-                path:'',component:LoginComponent,
+                path:'',component:HomeComponent,
                 pathMatch:'full'
             },
             {

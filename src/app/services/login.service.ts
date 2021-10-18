@@ -8,15 +8,15 @@ import { catchError } from 'rxjs/operators';
 })
 export class LoginService {
 
-    private apiUrl: string = 'https://restcountries.com/v2';
+    private urlApi: string = 'https://restcountries.com/v2';
 
   constructor( private http: HttpClient) { }
 
-  buscarPais (termino:string):Observable<any>{
-      const url = `${ this.apiUrl}/name/${termino}`;
-     /*  console.log(url); */
-      
-      return this.http.get(url).pipe(catchError( err=> of(['vacio'])));
-  }
+  listusers(){
+    return this.http.get(`${this.urlApi}/users`).pipe(
+        tap( auth => this.authToken=auth ),
+        tap ( auth => {localStorage.setItem('idToken',this.authToken.token); localStorage.setItem('mail',this.usuario); })
+    );
+}
 
 }

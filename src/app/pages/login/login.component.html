@@ -1,2 +1,40 @@
-<p>login works!</p>
-<button (click)='buscar()'>Enviar</button>
+<div class="bground flexCenterX flexCenterY">
+    <div class="ventana flexCenterY">
+        <h2>Login</h2>
+        <mat-icon style="margin: 0;">fingerprint</mat-icon>
+        <hr style="width: 60%;">
+        <h2>Bienvenido al administrador de usuarios</h2>
+    
+        <form [formGroup]="formLogin" class="flexCenterY form">  
+            <mat-form-field appearance="fill">
+                <mat-label>Correo/Usuario</mat-label>
+                <input matInput formControlName="email">
+                <mat-error>
+                    Correo invalido
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput formControlName="password">
+                <mat-error>
+                    Contraseña incorrecta ingresa mínimo 6 dígitos
+                </mat-error>
+            </mat-form-field>   
+            <span class="alert" *ngIf="errorRequest">Correo o contraseña invalida</span>     
+        </form>
+        
+        <button mat-raised-button class="btn btn-color btn-block" (click)="login()"
+        [disabled]="formLogin.invalid">
+            Ingresar
+        </button>
+        <small>No estas registrado? <a routerLink="/auth/login"(click)="mostrarUsuario=!mostrarUsuario" >Crea una cuenta</a>.</small>
+        <div *ngIf="mostrarUsuario" style="margin:0;">
+            <small>email: eve.holt@reqres.in</small><br>
+            <small>password: pistol</small>
+        </div>
+        <!-- <button mat-raised-button color="danger" (click)="logout()">
+           logout
+        </button> -->
+    </div>
+</div>
