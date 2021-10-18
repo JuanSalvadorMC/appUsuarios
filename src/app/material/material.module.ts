@@ -10,7 +10,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { CustomMatPaginatorIntl } from './paginator-es';
 
 
 @NgModule({
@@ -24,12 +26,19 @@ import { MatInputModule } from '@angular/material/input';
     MatGridListModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatCardModule
   ],
+  imports: [
+    MatPaginatorModule,
+],
   providers: [
     {
+        
         provide: MatFormFieldControl,
         useValue : {}
-    },]
+    },
+    {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl},]
 })
 export class MaterialModule { }

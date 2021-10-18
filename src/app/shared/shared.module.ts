@@ -1,23 +1,24 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
 
-
+@Injectable({
+    providedIn: 'root'
+  })
 
 @NgModule({
   declarations: [
-    SidebarComponent,
     NavbarComponent
   ],exports: [
-    SidebarComponent,
     NavbarComponent,
     
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule,
   ]
 })
 export class SharedModule { }

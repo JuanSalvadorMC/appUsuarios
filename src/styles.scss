@@ -7,3 +7,11 @@ $purpura: #673ab7;
 $purpuraLigth: #b7aec7;
 $PurpuraStrong: #4f2597;
 $gris:#a1a1a1;
+.flexCenterY{
+    display: flex !important;
+    align-items: center;
+}
+.flexCenterX{
+    display: flex !important;
+    justify-content: center;
+}

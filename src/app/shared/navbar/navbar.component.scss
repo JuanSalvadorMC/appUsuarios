@@ -1,0 +1,13 @@
+$purpura: #673ab7;
+$purpuraLigth: #b7aec7;
+$PurpuraStrong: #4f2597;
+$gris:#a1a1a1;
+$azulClaro:#9ac4e2;
+$azul:#4695ce;
+.navbar{
+    background-color: $azulClaro;
+}
+.alinear{
+    display: flex;
+    justify-content: space-between;
+}

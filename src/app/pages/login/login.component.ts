@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     errorRequest=false;
 
   constructor( 
-      private LoginService:LoginService, 
+      private usersService:UsersService,
       private router:Router, 
       private authService:AuthService, 
       ) { }

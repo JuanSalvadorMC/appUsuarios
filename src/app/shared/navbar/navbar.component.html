@@ -1,1 +1,9 @@
-<p>navbar works!</p>
+<mat-toolbar class="alinear navbar">
+    <div>
+        <h1>Administrador de usuarios</h1>
+    </div>
+    <div>
+        <span>{{getUsuario}}</span> &nbsp;
+        <button mat-button (click)="logout()"><h3>Logout</h3></button>   
+    </div>   
+</mat-toolbar>

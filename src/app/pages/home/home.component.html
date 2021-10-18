@@ -1,77 +1,101 @@
-<!-- <mat-toolbar >
-    <button mat-icon-button (click)="sidenav.toggle()" >
-        <span>Menux</span><mat-icon>menu</mat-icon>
-    </button>
-    
-</mat-toolbar> -->
-
-
-
-<mat-sidenav-container  fullscreen>
-  <mat-sidenav #sidenav mode='push' position="end">
-    <mat-toolbar class="alinear">
-        <span>Menu</span>
-        <button mat-icon-button (click)="sidenav.toggle()" >
-            <mat-icon mat-list-icon>menu</mat-icon> 
-        </button>
-        
-    </mat-toolbar>
-    <mat-nav-list>
-        <a routerLink="./lista-usuarios" mat-list-item>
-            <mat-icon mat-list-icon>label</mat-icon>
-            <span>Lista de usuarios</span>
-        </a>   
-        <a routerLink="./lista-usuarios" mat-list-item>
-            <mat-icon mat-list-icon>add</mat-icon>
-            <span>Lista de usuarios</span>
-        </a>   
-        <a routerLink="./lista-usuarios" mat-list-item>
-            <mat-icon mat-list-icon>label</mat-icon>
-            <span>Lista de usuarios</span>
-        </a>   
-        <a routerLink="./lista-usuarios" mat-list-item>
-            <mat-icon mat-list-icon>label</mat-icon>
-            <span>Lista de usuarios</span>
-        </a>   
-    </mat-nav-list>
-  </mat-sidenav>
-
-    <mat-sidenav-content>
-       
-        <mat-toolbar class="alinear">
-            <div>
-                <span>Menu</span>
-            <button mat-icon-button (click)="sidenav.toggle()" >
-                <mat-icon>menu</mat-icon> 
-            </button>
-            </div>
-             
-            <div>
-                <span>{{getUsuario}}</span>
-             <button mat-button (click)="logout()"><h3>Logout</h3></button>   
-            </div>
-            
-        </mat-toolbar>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, unde nesciunt? Dolorem ab molestias ipsum repudiandae tenetur iusto, mollitia vel totam ducimus tempora natus architecto et non deleniti, maxime harum?</h2>
-        <mat-nav-list>
-            <a routerLink="./lista-usuarios" mat-list-item>
-                <mat-icon mat-list-icon>label</mat-icon>
-                <span>Lista de usuarios</span>
-            </a>   
-            <a routerLink="./lista-usuarios" mat-list-item>
-                <mat-icon mat-list-icon>add</mat-icon>
-                <span>Lista de usuarios</span>
-            </a>   
-            <a routerLink="./lista-usuarios" mat-list-item>
-                <mat-icon mat-list-icon>label</mat-icon>
-                <span>Lista de usuarios</span>
-            </a>   
-            <a routerLink="./lista-usuarios" mat-list-item>
-                <mat-icon mat-list-icon>label</mat-icon>
-                <span>Lista de usuarios</span>
-            </a>   
-        </mat-nav-list>
-
-    </mat-sidenav-content>
-
-</mat-sidenav-container>
+<div class="bcolor">
+    <!-- NAVBAR -->
+    <app-navbar></app-navbar>
+        <mat-sidenav-container  class="container">
+        <!-- SIDEBAR -->
+            <mat-sidenav #sidenav  position="end">
+                <div class="flexCenterX flexCenterY" >            
+                    <mat-card class="example-card" *ngIf="this.detalleUsuario">
+                        <form *ngIf="editarUsuario" [formGroup]="formEditUser" class=" form">  
+                            <mat-card-title>Id: {{detalleUsuario.id}} -&nbsp; {{detalleUsuario.first_name}} {{detalleUsuario.last_name}} </mat-card-title><br>
+                            <div class="col">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput placeholder="{{detalleUsuario.first_name}}" value="Sushi" formControlName="first_name">
+                                </mat-form-field>  
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Apellido</mat-label>
+                                    <input matInput formControlName="last_name">
+                                    <mat-error>Correo invalido</mat-error>
+                                </mat-form-field> 
+                            </div>
+                            <div class="col">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Correo/Usuario</mat-label>
+                                    <input type="email" matInput formControlName="email">
+                                    <mat-error>
+                                        Correo invalido
+                                    </mat-error>
+                                </mat-form-field> 
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Area</mat-label>
+                                    <input matInput value="Sushi" formControlName="job">
+                                </mat-form-field>  
+                            </div>
+                            <div class="col">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Edad</mat-label>
+                                    <input type="number" matInput placeholder="45 años" formControlName="age">
+                                </mat-form-field>   
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Acerca de:</mat-label>
+                                    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="acercaDe"></textarea>
+                                </mat-form-field> 
+                            </div>
+                        </form>
+                        <div *ngIf="!editarUsuario" >
+                            <mat-card-title class="listButton2"><div>Id: {{detalleUsuario.id}} -&nbsp; {{detalleUsuario.first_name}} {{detalleUsuario.last_name}}</div> <button (click)="sidenav.toggle()" class="cerrar flexCenterX flexCenterY"><mat-icon>close</mat-icon> </button>  </mat-card-title>
+                            <h4>Email: <b>{{detalleUsuario.email}}</b></h4>
+                            <mat-card-content>
+                                <h4> Edad:<b> {{detalleUsuario.age}}</b> &nbsp;&nbsp; Area:<b> {{detalleUsuario.job}}</b>  </h4>
+                                <div class="contenido-card">
+                                    <img src="{{detalleUsuario.avatar}}" alt="">  
+                                    <p> <b>{{detalleUsuario.acercaDe}}</b>  Fugiat officia perspiciatis alias voluptate necessitatibus aliquid? Ducimus debitis suscipit facere eos fugiat saepe quas, rerum  veniam molestias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero error esse cumque nesciunt temporibus.</p>
+                                </div>
+                                <h3 *ngIf="detalleUsuario.updatedAt">Updated At: <b>{{detalleUsuario.updatedAt | date:'medium'}}</b>  </h3>
+                            </mat-card-content>
+                        </div>
+                        <mat-card-actions>
+                            <button *ngIf="editarUsuario" class="editar" mat-button (click)="editarUsuario=!editarUsuario">Atras</button>
+                            <button *ngIf="!editarUsuario" class="editar" mat-button (click)="editarUsuario=!editarUsuario && ocultarPosts=true">Editar</button>
+                            <button class="guardar" mat-button *ngIf="editarUsuario" (click)="actualizarUsuario()">Guardar</button>
+                            <button *ngIf="ocultarPosts && !editarUsuario" class="post" mat-button  (click)="obtenerPosts(detalleUsuario.id)"><span>Posts &nbsp;</span> <mat-icon mat-list-icon>create</mat-icon></button>
+                            <button *ngIf="!ocultarPosts" class="post" mat-button  (click)="ocultarPosts=!ocultarPosts"><span>Cerrar &nbsp;</span> <mat-icon mat-list-icon>expand_less</mat-icon></button>
+                        </mat-card-actions>
+                        <div class="flexCenterX">
+                            <mat-nav-list *ngIf="!ocultarPosts" style="width: 40vw;">
+                                <button class="listButton "  mat-list-item *ngFor="let post of posts">
+                                    <div class="listButton2">
+                                        <div class="flexCenterY">
+                                            <mat-icon  mat-list-icon>article</mat-icon>
+                                            <span>{{post.title | titlecase }}</span>   
+                                        </div>
+                                        <div>
+                                            <mat-icon (click)="borrarPost(post.id)">delete</mat-icon> 
+                                        </div>
+                                    </div>
+                                </button>    
+                            </mat-nav-list>
+                        </div>
+                    </mat-card>            
+                </div>
+            </mat-sidenav>
+            <!-- LISTA DE USUARIOS -->
+            <mat-sidenav-content (click)="ocultarPost()">
+                <h2>Lista de usuarios:</h2>
+                <mat-nav-list>
+                    <button class="listButton" (click)="sidenav.toggle()" (click)="obtenerDetalles(usuario.id)" mat-list-item *ngFor="let usuario of usuarios">
+                        <mat-icon  mat-list-icon>perm_identity</mat-icon>
+                        <span>{{usuario.first_name}} {{usuario.last_name}}</span>
+                    </button>    
+                </mat-nav-list>
+                <mat-paginator [length]="12"
+                    [pageSize]="6"
+                    aria-label="Select page"
+                    (page)="pageEvent = $event"
+                    (click)=" traerUsuarios(pageEvent.pageIndex)"
+                    class="flexCenterX">
+                </mat-paginator>
+            </mat-sidenav-content>
+        </mat-sidenav-container>    
+</div>
